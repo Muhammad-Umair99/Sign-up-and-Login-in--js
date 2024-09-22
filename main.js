@@ -53,6 +53,22 @@ signUpBtn.addEventListener("click", () => {
 
     const users = getUsers();
 
+
+    // Input validation
+    if (!name || !email || !password) {
+        alert('Please fill in all fields.');
+        return;
+    }
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long.');
+        return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
     // Check if the email already exists
     const userExists = users.some(user => user.email === email);
     if (userExists) {
